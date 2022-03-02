@@ -1,10 +1,10 @@
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText);
+    console.log(searchText);
     searchField.value = '';
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText.slice(0, 15)}`;
 
     // console.log(url);
 
@@ -15,14 +15,14 @@ const searchPhone = () => {
 }
 
 const displaySearchResult = (phones) => {
-    // console.log(phones);
+    console.log(phones);
     const searchResult = document.getElementById('search-result');
     phones.forEach(phone => {
-        // console.log(phone);
+        console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div onclick="loadPhoneDeail(${phone.slug}) class="card h-100">
+        <div onclick= "loadPhoneDetail(${phone.slug})" class="card h-100">
                 <img src="${phone.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
@@ -35,9 +35,6 @@ const displaySearchResult = (phones) => {
 }
 
 const loadPhoneDeail = phoneId => {
-    // console.log(phoneId);
+    console.log(phoneId);
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => console.log(data))
 }
