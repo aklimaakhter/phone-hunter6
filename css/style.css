@@ -3,7 +3,11 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: beige;
+    background-color:beige;
+}
+.row{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .notify{
 display: none;

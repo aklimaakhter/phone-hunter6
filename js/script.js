@@ -1,7 +1,9 @@
 const searchPhone = async () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // if (searchText === false) {
+    // clear data
+    searchField.value = '';
+    // if (searchText === '') {
     //     const errorMeassege = document.getElementById('error-meassege');
     //     errorMeassege.style.display = 'block';
     // }
@@ -9,8 +11,6 @@ const searchPhone = async () => {
     //     errorMeassege.style.display = 'none';
     // }
 
-    // clear data
-    searchField.value = '';
 
     // load data
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -26,7 +26,7 @@ const searchPhone = async () => {
 const displaySearchResult = (phones) => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    // if (phones.length === true) {
+    // if (phones.length === 0) {
     //     const errorMeassege = document.getElementById('error-meassege');
     //     errorMeassege.style.display = 'block';
     // }
@@ -51,7 +51,7 @@ const displaySearchResult = (phones) => {
 }
 
 const loadPhoneDeail = async phoneId => {
-    console.log(phoneId);
+    // console.log(phoneId);
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 
     const res = await fetch(url);
@@ -61,7 +61,7 @@ const loadPhoneDeail = async phoneId => {
 
 }
 const diplayPhoneDetail = phone => {
-    console.log(phone);
+    // console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
