@@ -51,7 +51,6 @@ const displaySearchResult = (phones) => {
 }
 
 const loadPhoneDeail = async phoneId => {
-    // console.log(phoneId);
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 
     const res = await fetch(url);
@@ -61,7 +60,6 @@ const loadPhoneDeail = async phoneId => {
 
 }
 const diplayPhoneDetail = phone => {
-    // console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
