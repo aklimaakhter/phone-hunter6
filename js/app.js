@@ -45,13 +45,17 @@ const loadPhoneDeail = phoneId => {
 const diplayPhoneDetail = phone => {
     console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
     <img src="${phone.image}" class="card-img-top w-50" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.name}</h5>
-                <p class="card-text">${phone.brand}</p>
+                <p class="storage-text">Storage: ${phone.mainFeatures.storage}</p>
+                <p class="chipset-text">ChipSet: ${phone.mainFeatures.chipSet}</p>
+                <p class="sensor-text">Sensor: ${phone.mainFeatures.sensors}</p>
+                <p class="others-text">Others: ${phone.others.WLAN}  ${phone.others.Bluetooth} ${phone.others.GPS}</p>
             </div>
     `;
     phoneDetails.appendChild(div);
