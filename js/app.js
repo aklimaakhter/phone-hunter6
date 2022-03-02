@@ -4,7 +4,7 @@ const searchPhone = () => {
     // console.log(searchText);
     searchField.value = '';
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText.slice(0, 5)}`;
 
     // console.log(url);
 
