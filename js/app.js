@@ -1,10 +1,10 @@
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    console.log(searchText);
+    // console.log(searchText);
     searchField.value = '';
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText.slice(0, 15)}`;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
     // console.log(url);
 
@@ -15,18 +15,19 @@ const searchPhone = () => {
 }
 
 const displaySearchResult = (phones) => {
-    console.log(phones);
+    // console.log(phones);
     const searchResult = document.getElementById('search-result');
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div onclick= "loadPhoneDetail(${phone.slug})" class="card h-100">
+        <div class="card h-100">
                 <img src="${phone.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">${phone.brand}</p>
+                    <button onclick ="loadPhoneDeail('${phone.slug}')" class="btn btn-primary">Explore</button> 
                 </div>
             </div>
         `;
@@ -37,4 +38,21 @@ const displaySearchResult = (phones) => {
 const loadPhoneDeail = phoneId => {
     console.log(phoneId);
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => diplayPhoneDetail(data.data))
+}
+const diplayPhoneDetail = phone => {
+    console.log(phone);
+    const phoneDetails = document.getElementById('phone-details');
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+    <img src="${phone.image}" class="card-img-top w-50" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${phone.name}</h5>
+                <p class="card-text">${phone.brand}</p>
+            </div>
+    `;
+    phoneDetails.appendChild(div);
 }
