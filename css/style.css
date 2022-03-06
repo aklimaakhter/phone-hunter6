@@ -4,11 +4,11 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color:beige;
-};
-.row{
-    padding-left: 0px;
-    padding-right: 0px;
-};
+    overflow-x: hidden;
+}
+.card{
+    background-color: ghostwhite;
+}
 .notify{
 display: none;
 };

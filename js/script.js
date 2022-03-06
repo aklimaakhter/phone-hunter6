@@ -3,42 +3,36 @@ const searchPhone = async () => {
     const searchText = searchField.value;
     // clear data
     searchField.value = '';
-    // if (searchText === '') {
-    //     const errorMeassege = document.getElementById('error-meassege');
-    //     errorMeassege.style.display = 'block';
-    // }
-    // else {
-    //     errorMeassege.style.display = 'none';
-    // }
+    const errorMeassege = document.getElementById('error-meassege');
+    if (searchText === '') {
+        errorMeassege.style.display = 'block';
+    }
+    else {
+        errorMeassege.style.display = 'none';
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.status === true) {
+            displaySearchResult(data.data.slice(0, 20));
+        }
+        else {
+            errorMeassege.style.display = 'block';
+        }
+    }
 
     // load data
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-
-    const res = await fetch(url);
-    const data = await res.json();
-    displaySearchResult(data.data.slice(0, 20));
-
-
 }
-
 
 const displaySearchResult = (phones) => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    // if (phones.length === 0) {
-    //     const errorMeassege = document.getElementById('error-meassege');
-    //     errorMeassege.style.display = 'block';
-    // }
-    // else {
-    //     errorMeassege.style.display = 'none';
-    // }
     phones.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="card h-100">
-                <img src="${phone.image}" class="card-img-top w-100%" alt="...">
+        <div class="card rounded">
+             <div><img src="${phone.image}" class="img-fluid" alt="..."></div>
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">${phone.brand}</p>
